@@ -306,7 +306,7 @@ client.on("message", (message) => {
     if (!args) return message.channel.send("Escribe un titulo para buscarlo `&yt Circus Monster Mayu`");
     var opts = {
       maxResults: 1,
-      key: ' API_KEY '
+      key: ' AIzaSyA9zgfNkknVeSbgKf3_vZMuGbkKRAdDCzA '
     };
 		youtube(args, opts, function(err, results) {
     if(err) return console.log(err);
