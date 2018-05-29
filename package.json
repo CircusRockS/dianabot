@@ -1,0 +1,34 @@
+{
+  "name": "Dianabot",
+  "version": "1.0.3",
+  "description": "Mi waifu <3",
+  "main": "node Diana.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node Diana.js"
+  },
+  "engines": {
+    "node": "8.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://dianabot.glitch.me"
+  },
+  "author": "CircusRockS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://dianabot.glitch.me"
+  },
+  "homepage": "",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "enmap": "^0.6.2",
+    "express": "^4.16.3",
+    "jsel": "^1.1.6",
+    "moment": "^2.21.0",
+    "moment-duration-format": "^2.2.2",
+    "osu-call": "^1.2.1",
+    "tboiajs": "^1.4.1",
+    "youtube-search": "^1.0.10"
+  }
+}
