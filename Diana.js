@@ -7,7 +7,8 @@ const app = express();
 const isaac = require("tboiajs");
 const jsel = require("jsel");
 const osu = require("osu-call");
-const youtube = require("youtube-search")
+const Youtube = require("simple-youtube-api");
+const youtube = new Youtube('AIzaSyA9zgfNkknVeSbgKf3_vZMuGbkKRAdDCzA');
 
 app.use(express.static('public'));
 
@@ -304,14 +305,10 @@ client.on("message", (message) => {
     const content = message.content.split(' ').slice(1);
     const args = content.join(' ');
     if (!args) return message.channel.send("Escribe un titulo para buscarlo `&yt Circus Monster Mayu`");
-    var opts = {
-      maxResults: 1,
-      key: ' AIzaSyA9zgfNkknVeSbgKf3_vZMuGbkKRAdDCzA '
-    };
-		youtube(args, opts, function(err, results) {
-    if(err) return console.log(err);
-      message.channel.send("*"+message.author.username+"-sama* busqué en youtube `"+args+"` y encontré esto:\r"+results[0].link)
-    });
+    youtube.searchVideos(args, 1)
+      .then(results => {
+	    message.channel.send("*"+message.author.username+"-sama* busqué en youtube `"+args+"` y encontré esto:\n"+results[0].url);
+     });
   }
   if (command === "spray") {
     if (message.mentions.users.size < 1) return message.channel.send("Menciona a un usuario: `&spray @diana#1961`");
