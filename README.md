@@ -78,7 +78,7 @@ Lista de cosas por hacer
   -Kick (Que diga cosas diferentes al kickear usuarios del servidor)
 
 
-Creada por [CircusRockS](https://glitch.com/@CircusSleader)
+Creada por [CircusRockS](https://github.com/CircusRockS)
 -------------------
 
 \ ゜o゜)ノ
