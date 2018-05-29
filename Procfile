@@ -1,1 +1,1 @@
-worker: node diana.js
+worker: node Diana.js
