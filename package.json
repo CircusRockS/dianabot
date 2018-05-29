@@ -2,7 +2,7 @@
   "name": "Dianabot",
   "version": "1.0.3",
   "description": "Mi waifu <3",
-  "main": "node Diana.js",
+  "main": "Diana.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node Diana.js"
@@ -22,13 +22,14 @@
   "homepage": "",
   "dependencies": {
     "discord.js": "^11.3.2",
-    "enmap": "^0.6.2",
-    "express": "^4.16.3",
-    "jsel": "^1.1.6",
-    "moment": "^2.21.0",
+    "enmap": "^2.5.0",
+    "moment": "^2.22.1",
     "moment-duration-format": "^2.2.2",
-    "osu-call": "^1.2.1",
+    "express": "^4.16.3",
     "tboiajs": "^1.4.1",
-    "youtube-search": "^1.0.10"
+    "jsel": "^1.1.6",
+    "osu-call": "^1.2.1",
+    "youtube-search": "^1.1.1",
+    "simple-youtube-api": "^5.0.2"
   }
 }
