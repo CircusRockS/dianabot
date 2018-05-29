@@ -34,7 +34,7 @@ client.on("ready", () => {
 	console.log("¡Estoy lista!");
 });
 
-client.login(config.token);
+client.login(process.env.BOT_TOKEN);
 const prefix = config.prefix
 
 client.on("message", (message) => {
