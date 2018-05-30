@@ -9,6 +9,7 @@ const jsel = require("jsel");
 const osu = require("osu-call");
 const Youtube = require("simple-youtube-api");
 const youtube = new Youtube('AIzaSyA9zgfNkknVeSbgKf3_vZMuGbkKRAdDCzA');
+const Lyrics = require("./Lyrics.json");
 
 app.use(express.static('public'));
 
@@ -344,4 +345,13 @@ client.on("message", (message) => {
 				message.channel.send("Yes *my darling*.");
 				client.user.setAvatar(avatar)
   }
+  if (command === "lyrics") {
+    var phrase = Lyrics.Letras
+    const embed = new Discord.RichEmbed()
+		.setColor(0x00ff00)
+		.setDescription(phrase[Math.floor(Math.random() * phrase.length)])
+    message.channel.send({
+      embed
+    });
+    }
 });
