@@ -79,7 +79,7 @@ client.on("message", (message) => {
 		.addField("Moderación",
 		"&kick @mencion [razon] = ¡Saca un usuario molesto de tu servidor!")
 		.addField("Diversión",
-		"&visto @mencion = ¡Dejas en visto a un usuario! :o\r&hola = ¡Holi!\r&ping = ¡Pong!\r&decir [texto] = ¡Digo lo que quieras!\r&caracola = Preguntale algo a la caracola mágica :o (Solo preguntas que se puedan responder con si o no)\r&spray @mencion = ¡Mojas a alguien cuando sea malo!\r&bautizar @mencion = Le ofreces la bendición eterna a un usuario~")
+		"&visto @mencion = ¡Dejas en visto a un usuario! :o\r&hola = ¡Holi!\r&ping = ¡Pong!\r&decir [texto] = ¡Digo lo que quieras!\r&caracola = Preguntale algo a la caracola mágica :o (Solo preguntas que se puedan responder con si o no)\r&spray @mencion = ¡Mojas a alguien cuando sea malo!\r&bautizar @mencion = Le ofreces la bendición eterna a un usuario~\r&lyrics = Enseña un fragmento de una canción al azar.")
 		.addField("Busqueda",
 		"&yt [texto] = Busca videos en youtube\r&osu [modo] [Nombre de usuario] = Te enseña las estadisticas de dicho usuario | `Creditos: "+`${nakido.username}#${nakido.discriminator}`+"`")
 		.addBlankField(true)
