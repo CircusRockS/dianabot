@@ -101,7 +101,7 @@ client.on("message", (message) => {
   if (command === "caracola") {
     const content = message.content.split(' ').slice(1);
 		const args = content.join(' ');
-    var rpts = ["Sí","No","¿Por qué?","Por favor", "Tal vez", "No sé", "Definitivamente", "¡Claro!","¡Por supuesto!","Por supuesto que no","¿Qué?, deja el tang.","No cuentes con ello","Cuenta con ello","io k c no soi 100tifika","¿Tengo cara de que me importe?"];
+    var rpts = ["Sí","No","¿Por qué?","Por favor", "Sí", "Tal vez", "No sé", "Definitivamente", "Sí", "¡Claro!","¡Por supuesto!","Por supuesto que no","¿Qué?, deja el tang.","No cuentes con ello","Cuenta con ello","io k c no soi 100tifika","¿Tengo cara de que me importe?"];
     if (!args) return message.reply(`¡Escribe una pregunta!.`);
     const embed = new Discord.RichEmbed()
       .setColor(0x00ff00)
@@ -335,7 +335,7 @@ client.on("message", (message) => {
   }
   if (command === "bautizar") {
       if (message.mentions.users.size < 1) return message.channel.send("Menciona a un usuario: `&bautizar @diana#1961`");
-    message.channel.send("*Toma un sobre de tang y lo rocia sobre "+message.mentions.users.first()+"* **Has sido bio.**")
+    message.channel.send("*Toma un sobre de tang y lo rocia sobre "+message.mentions.users.first()+"* **Has sido bendecido.**")
   }
   if (command === "setavatar") {
 		const content = message.content.split(' ').slice(1);
