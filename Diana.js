@@ -9,7 +9,7 @@ const jsel = require("jsel");
 const osu = require("osu-call");
 const Youtube = require("simple-youtube-api");
 const youtube = new Youtube('AIzaSyA9zgfNkknVeSbgKf3_vZMuGbkKRAdDCzA');
-const Lyrics = require("./Lyrics.json");
+const info = require("./info.json");
 
 app.use(express.static('public'));
 
@@ -189,7 +189,7 @@ client.on("message", (message) => {
     .setFooter("Para más información visita: https://dianabot.glitch.me/ (WIP)", client.user.avatarURL)
     .addField("Añadir comandos de moderación:","~~Kick~~\rBan\rMute\rLogs\rOtros")
     .addField("Añadir más comandos de diversión:","Acciones (Abrazos, besos, golpes, pats etc)\rJuegos de azar y mujerz... Digo, y trivias\rReproducir música\rBatallas pokemon\rHablar con Diana\rSistema de niveles y roles (Muy, muy, muy en el futuro)\rShipeos\r~~Molestar a nakido~~\rPreguntas filosoficas\rRetos\rOtros")
-    .addField("Añadir comandos de busqueda","~~Youtube~~/Descargar audio de los videos\rImagenes\r~~Estadisticas de osu~~\rPokedex\rClima\rLyrics\rWikipedia :thinking:\rOtros")
+    .addField("Añadir comandos de busqueda","~~Youtube~~/Descargar audio de los videos\rImagenes\r~~Estadisticas de osu~~\rPokedex\rClima\r~~Lyrics~~\rWikipedia :thinking:\rOtros")
     .addField("Añadir comandos generales","~~Userinfo\rBotinfo~~\rAvatar (Todos los bots lo tienen, yo solo quiero ser popular :c)\rCalculadora :thinking:\rRecordador\rOtros")
     .addField("Mejorar comandos actuales","~~Ping (Que muestre el ping y no solo diga *Pong*)\rCaracola (Colocar las respuestas en un formato mas bonito)\rKick (Que diga cosas diferentes al kickear usuarios del servidor~~")
     .setTimestamp()
@@ -346,7 +346,7 @@ client.on("message", (message) => {
 				client.user.setAvatar(avatar)
   }
   if (command === "lyrics") {
-    var phrase = Lyrics.Letras
+    var phrase = info.Letras
     const embed = new Discord.RichEmbed()
 		.setColor(0x00ff00)
 		.setDescription(phrase[Math.floor(Math.random() * phrase.length)])
