@@ -29,7 +29,7 @@ setInterval(() => {
 client.on("ready", () => {
   client.user.setPresence({
   game: {
-    name: "Killing Floor",
+    name: `phrase[Math.floor(Math.random() * phrase.length)]`,
     url: "https://www.twitch.tv/CircusRockS_",
     type: "STREAMING"
   }});
