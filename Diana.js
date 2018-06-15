@@ -29,9 +29,9 @@ setInterval(() => {
 client.on("ready", () => {
   client.user.setPresence({
   game: {
-    name: `phrase[Math.floor(Math.random() * phrase.length)]`,
-    url: "https://www.twitch.tv/CircusRockS_",
-    type: "STREAMING"
+  name: "Osu!",
+  url: "https://www.twitch.tv/CircusRockS_",
+  type: "STREAMING"
   }});
 	console.log("¡Estoy lista!");
 });
