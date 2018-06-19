@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const isaac = require("tboiajs");
 const jsel = require("jsel");
+const cleverbot = require("cleverbot.io");
 const osu = require("osu-call");
 const Youtube = require("simple-youtube-api");
 const youtube = new Youtube('AIzaSyA9zgfNkknVeSbgKf3_vZMuGbkKRAdDCzA');
@@ -354,4 +355,13 @@ client.on("message", (message) => {
       embed
     });
     }
+	if (command === "talk"){
+		const bot = new cleverbot("8tjjFJRrH7PyYcrN", "D0GXFAsCghDLXAg9MWzrHaStpQnRLtwl");
+		bot.setNick("DianaCavendishBot")
+		bot.create(function(err, session) {
+			bot.ask(args.join(" "), function(err, response) {
+					message.channel.send(response)			
+			})
+		})
+	}
 });
