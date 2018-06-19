@@ -30,6 +30,7 @@
     "jsel": "^1.1.6",
     "osu-call": "^1.2.1",
     "youtube-search": "^1.1.1",
-    "simple-youtube-api": "^5.0.2"
+    "simple-youtube-api": "^5.0.2",
+    "cleverbot.io": "1.0.4"
   }
 }
