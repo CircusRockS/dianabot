@@ -30,7 +30,7 @@ setInterval(() => {
 client.on("ready", () => {
   client.user.setPresence({
   game: {
-  name: "Osu!",
+  name: "Touhou 15: Legacy of Lunatic Kingdom",
   url: "https://www.twitch.tv/CircusRockS_",
   type: "STREAMING"
   }});
@@ -90,6 +90,7 @@ client.on("message", (message) => {
 	}
 	if (command === "visto") {
     if (message.mentions.users.size < 1) return message.channel.send("Debes mencionar a alguien: `&visto @diana#1961`")
+    message.delete();
 		message.channel.send("**"+message.author.username+"**"+" te ha clavado el visto "+message.mentions.users.first()+" <:Visto:424701850953056279>")
 	}
 	if (command === "decir"){
