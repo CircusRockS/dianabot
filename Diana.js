@@ -9,7 +9,7 @@ const jsel = require("jsel");
 const cleverbot = require("cleverbot.io");
 const osu = require("osu-call");
 const Youtube = require("simple-youtube-api");
-const youtube = new Youtube(YT_API);
+const youtube = new Youtube(process.env.YT_API);
 const info = require("./info.json");
 
 app.use(express.static('public'));
