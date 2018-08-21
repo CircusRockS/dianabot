@@ -11,6 +11,7 @@ const osu = require("osu-call");
 const Youtube = require("simple-youtube-api");
 const youtube = new Youtube(process.env.YT_API);
 const info = require("./info.json");
+const bot = new cleverbot(process.env.CLEVER_1, process.env.CLEVER_2);
 
 app.use(express.static('public'));
 
@@ -357,7 +358,6 @@ client.on("message", (message) => {
     });
     }
 	if (command === "talk"){
-		const bot = new cleverbot("8tjjFJRrH7PyYcrN", "D0GXFAsCghDLXAg9MWzrHaStpQnRLtwl");
 		bot.setNick("DianaCavendishBot")
 		bot.create(function(err, session) {
 			bot.ask(args.join(" "), function(err, response) {
