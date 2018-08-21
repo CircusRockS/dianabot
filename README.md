@@ -32,8 +32,6 @@ Lista de cosas por hacer
 
    -Batallas pokemon
 
-   -Hablar con Diana
-
    -Sistema de niveles y roles (Muy, muy, muy en el futuro)
 
    -Shipeos
