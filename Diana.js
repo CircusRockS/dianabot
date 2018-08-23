@@ -79,13 +79,13 @@ client.on("message", (message) => {
 		.setThumbnail(client.user.avatarURL)
 		.setTimestamp()
 		.addField("General",
-		"&help = Muestra este mensaje de ayuda\r&serverinfo = Muestra información detallada del servidor\r&userinfo @mencion = Muestra información detallada de un usuario\r&botinfo = Muestra información sobre Diana\r&lista = Enseña la lista de cosas que mi autora añadirá en el futuro ♡")
+		"&help = Muestra este mensaje de ayuda\r&serverinfo = Muestra información detallada del servidor\r&userinfo @mencion = Muestra información detallada de un usuario\r&botinfo = Muestra información sobre Diana\r&avatar @mención = Muestro el avatar del usuario mencionado\r&lista = Enseña la lista de cosas que mi autora añadirá en el futuro ♡")
 		.addField("Moderación",
 		"&kick @mencion [razon] = ¡Saca un usuario molesto de tu servidor!")
 		.addField("Diversión",
 		"&visto @mencion = ¡Dejas en visto a un usuario! :o\r&hola = ¡Holi!\r&ping = ¡Pong!\r&decir [texto] = ¡Digo lo que quieras!\r&caracola = Preguntale algo a la caracola mágica :o (Solo preguntas que se puedan responder con si o no)\r&spray @mencion = ¡Mojas a alguien cuando sea malo!\r&bautizar @mencion = Le ofreces la bendición eterna a un usuario~\r&lyrics = Enseña un fragmento de una canción al azar.\r&talk = Habla conmigo (Tardo en responder, tengo mejores cosas que hacer)\r&c = Envia un mensaje completamente anónimo.")
 		.addField("Busqueda",
-		"&yt [texto] = Busca videos en youtube\r&osu [modo] [Nombre de usuario] = Te enseña las estadisticas de dicho usuario | `Creditos: "+`${nakido.username}#${nakido.discriminator}`+"`\r&avatar @mención = Muestro el avatar del usuario mencionado")
+		"&yt [texto] = Busca videos en youtube\r&osu [modo] [Nombre de usuario] = Te enseña las estadisticas de dicho usuario | `Creditos: "+`${nakido.username}#${nakido.discriminator}`+"`")
 		.addField("Música", 
 		"&play = Reproduce la lista de canciones añadidas\r&add [Texto] = Añade una canción a la lista de reproducción\r&queue = Enseña la lista de canciones en espera\r&join = Me uno al canal de voz donde estas\r&leave = Salgo del canal de voz donde estas\r&pause = Pauso la canción que está sonando\r&resume = Continuo la reproducción de la canción que suena\r&time = Enseño el minuto en el que la canción está")
 		.addBlankField(true)
@@ -195,10 +195,10 @@ client.on("message", (message) => {
     .setColor(0x00ff00)
     .setFooter("Para más información visita: https://dianabot.glitch.me/ (WIP)", client.user.avatarURL)
     .addField("Añadir comandos de moderación:","~~Kick~~\rBan\rMute\rLogs\rOtros")
-    .addField("Añadir más comandos de diversión:","Acciones (Abrazos, besos, golpes, pats etc)\rJuegos de azar y mujerz... Digo, y trivias\rReproducir música\rBatallas pokemon\r~Hablar con Diana~\rSistema de niveles y roles (Muy, muy, muy en el futuro)\rShipeos\r~~Molestar a nakido~~\rPreguntas filosoficas\rRetos\rGalletas de la fortuna\r~~Lyrics~~\rFrases random\rOtros")
+    .addField("Añadir más comandos de diversión:","Acciones (Abrazos, besos, golpes, pats etc)\rJuegos de azar y mujerz... Digo, y trivias\r~~Reproducir música~~\rBatallas pokemon\r~Hablar con Diana~\rSistema de niveles y roles (Muy, muy, muy en el futuro)\rShipeos\r~~Molestar a nakido~~\rPreguntas filosoficas\rRetos\rGalletas de la fortuna\r~~Lyrics~~\rFrases random\rOtros")
     .addField("Añadir comandos de busqueda","~~Youtube~~/Descargar audio de los videos\rImagenes\r~~Estadisticas de osu~~\rPokedex\rClima\rWikipedia :thinking:\rOtros")
-    .addField("Añadir comandos generales","~~Userinfo\rBotinfo~~\rAvatar (Todos los bots lo tienen, yo solo quiero ser popular :c)\rCalculadora :thinking:\rRecordador\rOtros")
-    .addField("Mejorar comandos actuales","~~Ping (Que muestre el ping y no solo diga *Pong*)\rCaracola (Colocar las respuestas en un formato mas bonito)\rKick (Que diga cosas diferentes al kickear usuarios del servidor~~\rTalk (Hacer que Diana responda de inmediato)")
+    .addField("Añadir comandos generales","~~Userinfo\rBotinfo~~\r~~Avatar (Todos los bots lo tienen, yo solo quiero ser popular :c)~~\rCalculadora :thinking:\rRecordador\rOtros")
+    .addField("Mejorar comandos actuales","~~Ping (Que muestre el ping y no solo diga *Pong*)\rCaracola (Colocar las respuestas en un formato mas bonito)\rKick (Que diga cosas diferentes al kickear usuarios del servidor~~\rTalk (Hacer que Diana responda de inmediato)\rAvatar (colocarle un formato más bonito)")
     .setTimestamp()
     message.channel.send({
       embed
