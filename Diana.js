@@ -195,7 +195,7 @@ client.on("message", (message) => {
     .setColor(0x00ff00)
     .setFooter("Para más información visita: https://dianabot.glitch.me/ (WIP)", client.user.avatarURL)
     .addField("Añadir comandos de moderación:","~~Kick~~\rBan\rMute\rLogs\rOtros")
-    .addField("Añadir más comandos de diversión:","Acciones (Abrazos, besos, golpes, pats etc)\rJuegos de azar y mujerz... Digo, y trivias\r~~Reproducir música~~\rBatallas pokemon\r~Hablar con Diana~\rSistema de niveles y roles (Muy, muy, muy en el futuro)\rShipeos\r~~Molestar a nakido~~\rPreguntas filosoficas\rRetos\rGalletas de la fortuna\r~~Lyrics~~\rFrases random\rOtros")
+    .addField("Añadir más comandos de diversión:","Acciones (Abrazos, besos, golpes, pats etc)\rJuegos de azar y mujerz... Digo, y trivias\r~~Reproducir música~~\rBatallas pokemon\r~~Hablar con Diana~~\rSistema de niveles y roles (Muy, muy, muy en el futuro)\rShipeos\r~~Molestar a nakido~~\rPreguntas filosoficas\rRetos\rGalletas de la fortuna\r~~Lyrics~~\rFrases random\rOtros")
     .addField("Añadir comandos de busqueda","~~Youtube~~/Descargar audio de los videos\rImagenes\r~~Estadisticas de osu~~\rPokedex\rClima\rWikipedia :thinking:\rOtros")
     .addField("Añadir comandos generales","~~Userinfo\rBotinfo~~\r~~Avatar (Todos los bots lo tienen, yo solo quiero ser popular :c)~~\rCalculadora :thinking:\rRecordador\rOtros")
     .addField("Mejorar comandos actuales","~~Ping (Que muestre el ping y no solo diga *Pong*)\rCaracola (Colocar las respuestas en un formato mas bonito)\rKick (Que diga cosas diferentes al kickear usuarios del servidor~~\rTalk (Hacer que Diana responda de inmediato)\rAvatar (colocarle un formato más bonito)")
