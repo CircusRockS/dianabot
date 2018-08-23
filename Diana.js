@@ -85,7 +85,9 @@ client.on("message", (message) => {
 		.addField("Diversión",
 		"&visto @mencion = ¡Dejas en visto a un usuario! :o\r&hola = ¡Holi!\r&ping = ¡Pong!\r&decir [texto] = ¡Digo lo que quieras!\r&caracola = Preguntale algo a la caracola mágica :o (Solo preguntas que se puedan responder con si o no)\r&spray @mencion = ¡Mojas a alguien cuando sea malo!\r&bautizar @mencion = Le ofreces la bendición eterna a un usuario~\r&lyrics = Enseña un fragmento de una canción al azar.\r&talk = Habla conmigo (Tardo en responder, tengo mejores cosas que hacer)\r&c = Envia un mensaje completamente anónimo.")
 		.addField("Busqueda",
-		"&yt [texto] = Busca videos en youtube\r&osu [modo] [Nombre de usuario] = Te enseña las estadisticas de dicho usuario | `Creditos: "+`${nakido.username}#${nakido.discriminator}`+"`")
+		"&yt [texto] = Busca videos en youtube\r&osu [modo] [Nombre de usuario] = Te enseña las estadisticas de dicho usuario | `Creditos: "+`${nakido.username}#${nakido.discriminator}`+"`\r&avatar @mención = Muestro el avatar del usuario mencionado")
+		.addField("Música", 
+		"&play = Reproduce la lista de canciones añadidas\r&add [Texto] = Añade una canción a la lista de reproducción\r&queue = Enseña la lista de canciones en espera\r&join = Me uno al canal de voz donde estas\r&leave = Salgo del canal de voz donde estas\r&pause = Pauso la canción que está sonando\r&resume = Continuo la reproducción de la canción que suena\r&time = Enseño el minuto en el que la canción está")
 		.addBlankField(true)
 		message.channel.send({
       embed
@@ -408,13 +410,13 @@ client.on("message", (message) => {
       let collector = message.channel.createCollector(m => m);
       collector.on('message', m => {
         if (m.content.startsWith(config.prefix + 'pause')){
-          message.channel.sendMessage('pausando...').then(() => {dispatcher.pause();});
+          message.channel.sendMessage('Pausando...').then(() => {dispatcher.pause();});
         } else if (m.content.startsWith(config.prefix + 'resume')){
           message.channel.sendMessage('Reproduciendo...').then(() => {dispatcher.resume();});
         } else if (m.content.startsWith(config.prefix + 'skip')){
           message.channel.sendMessage('Saltado...').then(() => {dispatcher.end();});
         } else if (m.content.startsWith(config.prefix + 'time')){
-          message.channel.sendMessage(`tiempo: ${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0'+Math.floor((dispatcher.time % 60000)/1000) : Math.floor((dispatcher.time % 60000)/1000)}`);
+          message.channel.sendMessage(`Tiempo: ${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0'+Math.floor((dispatcher.time % 60000)/1000) : Math.floor((dispatcher.time % 60000)/1000)}`);
         }
       });
       dispatcher.on('end', () => {
@@ -443,7 +445,6 @@ client.on("message", (message) => {
     youtube.searchVideos(args, 1)
       .then(results => {
       let url = results[0].url
-      if (url == '' || url === undefined) return message.channel.sendMessage(`Debes agregar una URL de video de YouTube o una ID`);
       yt.getInfo(url, (err, info) => {
         if(err) return message.channel.sendMessage('El enlace de youtube es invalido: ' + err);
         if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
