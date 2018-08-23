@@ -28,8 +28,6 @@ Lista de cosas por hacer
 
    -Juegos de azar y mujerz... Digo, y trivias
 
-   -Reproducir música
-
    -Batallas pokemon
 
    -Sistema de niveles y roles (Muy, muy, muy en el futuro)
@@ -60,14 +58,14 @@ Lista de cosas por hacer
 
 **Añadir comandos generales**
   
-  -Avatar (Todos los bots lo tienen, yo solo quiero ser popular :c)
   -Calculadora
   -Recordador
   -Otros
   
 **Mejorar comandos actuales**
 
-  -Nada de momento
+  -Talk (Hacer que Diana responda de inmediato)
+  -Avatar (Darle un formato más bonito)
 
 
 Creada por [CircusRockS](https://github.com/CircusRockS)
