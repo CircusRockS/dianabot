@@ -65,6 +65,7 @@ Lista de cosas por hacer
 **Mejorar comandos actuales**
 
   -Talk (Hacer que Diana responda de inmediato)
+  
   -Avatar (Darle un formato más bonito)
 
 
