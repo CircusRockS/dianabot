@@ -34,7 +34,7 @@ setInterval(() => {
 client.on("ready", () => {
   client.user.setPresence({
   game: {
-  name: "Touhou 15: Legacy of Lunatic Kingdom",
+  name: "Hacerse la diva",
   url: "https://www.twitch.tv/CircusRockS_",
   type: "STREAMING"
   }});
