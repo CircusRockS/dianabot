@@ -32,12 +32,20 @@ setInterval(() => {
 }, 240000);
 
 client.on("ready", () => {
+  var status = info.Status
+
+setInterval(function() {
+
+  var random = [Math.floor(Math.random() * status.length)]
+
   client.user.setPresence({
-  game: {
-  name: "Hacerse la diva",
-  url: "https://www.twitch.tv/CircusRockS_",
-  type: "STREAMING"
-  }});
+    game: {
+      name: status[random], 
+      url: "https://www.twitch.tv/CircusRockS_",
+      type: "STREAMING",
+    }
+  });
+  }, 50000);
 	console.log("¡Estoy lista!");
 });
 
