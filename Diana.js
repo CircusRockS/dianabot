@@ -45,7 +45,7 @@ setInterval(function() {
       type: "STREAMING",
     }
   });
-  }, 50000);
+  }, 500000);
 	console.log("¡Estoy lista!");
 });
 
@@ -72,9 +72,6 @@ client.on("message", (message) => {
       m.delete()
     });
 	}
-	if (command === "hola") {
-		message.channel.send("Hola, ¿Qué tal?");
-  }
 	if (command === "help") {
     let nakido = client.users.get(config.nakido)
 		const embed = new Discord.RichEmbed()
@@ -89,7 +86,7 @@ client.on("message", (message) => {
 		.addField("General",
 		"&help = Muestra este mensaje de ayuda\r&serverinfo = Muestra información detallada del servidor\r&userinfo @mencion = Muestra información detallada de un usuario\r&botinfo = Muestra información sobre Diana\r&avatar @mención = Muestro el avatar del usuario mencionado\r&lista = Enseña la lista de cosas que mi autora añadirá en el futuro ♡")
 		.addField("Moderación",
-		"&kick @mencion [razon] = ¡Saca un usuario molesto de tu servidor!")
+		"&kick @mencion [razon] = ¡Saca un usuario molesto de tu servidor!\r&clear [cantidad] = Elimino la cantidad de mensajes indicados")
 		.addField("Diversión",
 		"&visto @mencion = ¡Dejas en visto a un usuario! :o\r&hola = ¡Holi!\r&ping = ¡Pong!\r&decir [texto] = ¡Digo lo que quieras!\r&caracola = Preguntale algo a la caracola mágica :o (Solo preguntas que se puedan responder con si o no)\r&spray @mencion = ¡Mojas a alguien cuando sea malo!\r&bautizar @mencion = Le ofreces la bendición eterna a un usuario~\r&lyrics = Enseña un fragmento de una canción al azar.\r&talk = Habla conmigo (Tardo en responder, tengo mejores cosas que hacer)\r&c = Envia un mensaje completamente anónimo.")
 		.addField("Busqueda",
@@ -102,22 +99,33 @@ client.on("message", (message) => {
     });
 	}
 	if (command === "visto") {
-    if (message.mentions.users.size < 1) return message.channel.send("Debes mencionar a alguien: `&visto @diana#1961`")
-    message.delete();
+    let noMention = new Discord.RichEmbed()
+    .setDescription("**Debes mencionar a alguien**\nEjemplo: `&visto @diana#1961`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("ff0000")
+    if (message.mentions.users.size < 1) return message.channel.send(noMention)
 		message.channel.send("**"+message.author.username+"**"+" te ha clavado el visto "+message.mentions.users.first()+" <:Visto:424701850953056279>")
 	}
 	if (command === "decir"){
     const content = message.content.split(' ').slice(1);
     const args = content.join(' ');
-		if(!args) return message.channel.send('Debes añadir texto para decir.');
+    let noArgs = new Discord.RichEmbed()
+    .setDescription("**Debes escribir algo para que yo pueda decirlo**\nEjemplo: `&decir Me gusta el pan con harina pan`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("ff0000")
+		if(!args) return message.channel.send(noArgs);
     message.delete();
 		message.channel.send(`${args}`);
     }
   if (command === "caracola") {
     const content = message.content.split(' ').slice(1);
 		const args = content.join(' ');
-    var rpts = ["Sí","No","¿Por qué?","Por favor", "Sí", "Tal vez", "No sé", "Definitivamente", "Sí", "¡Claro!","¡Por supuesto!","Por supuesto que no","¿Qué?, deja el tang.","No cuentes con ello","Cuenta con ello","io k c no soi 100tifika","¿Tengo cara de que me importe?"];
-    if (!args) return message.reply(`¡Escribe una pregunta!.`);
+    var rpts = ["Sí","No","¿Por qué?","Por favor", "Tal vez", "No sé", "Definitivamente", "¡Claro!","¡Por supuesto!","Por supuesto que no","¿Qué?, deja el tang.","No cuentes con ello","Cuenta con ello","io k c no soi 100tifika","¿Tengo cara de que me importe?"];
+    let noArgs = new Discord.RichEmbed()
+    .setDescription("**Debes escribir una pregunta de si o no**\nEjemplo: `&caracola ¿Ella me amará algún día?`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("ff0000")
+    if (!args) return message.channel.send(noArgs);
     const embed = new Discord.RichEmbed()
       .setColor(0x00ff00)
       .setTitle(message.author.username+" ha hablado la caracola mágica.")
@@ -150,10 +158,26 @@ client.on("message", (message) => {
     let razon = args.slice(1).join(" ");
     let user = message.mentions.users.first();
     var respuestas = ["Le cayo la onu","Lo mandaron a freir esparragos","Nadie lo queria"]
-    if (message.mentions.users.size < 1) return message.channel.send('Debes mencionar a alguien: `&kick @diana#1961 [Razón]`').catch(console.error);
-    if (!razon) return message.channel.send("Escribe una razón: `&kick @diana#1961 [Razón]`");
-    if (!message.member.permissions.has("KICK_MEMBERS")) return message.channel.send("No tienes permitido hacer eso.")
-    if (!message.guild.member(user).kickable) return message.channel.send('No puedo kickear a este usuario :(');
+    let noPer = new Discord.RichEmbed()
+    .setDescription("**Este comando requiere de permisos para kickear usuarios**")
+    .setFooter("Sistema de seguridad de Diana")
+    .setColor("ff0000")
+    if (!message.member.permissions.has("KICK_MEMBERS")) return message.channel.send(noPer)
+    let noMention = new Discord.RichEmbed()
+    .setDescription("**Debes mencionar a alguien**\nEjemplo: `&kick @diana#1961 [Razón]`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("ff0000")
+    if (message.mentions.users.size < 1) return message.channel.send(noMention).catch(console.error);
+    let noReason = new Discord.RichEmbed()
+    .setDescription("**Escribe una razón**\nEjemplo: `&kick @diana#1961 [Razón]`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("ff0000")
+    if (!razon) return message.channel.send(noReason);
+    let equalMember = new Discord.RichEmbed()
+    .setDescription("**El usuario mencionado tiene un rango igual o mayor al tuyo y por ello no puedo kickerlo.**")
+    .setFooter("Sistema de seguridad de Diana")
+    .setColor("ff0000")
+    if (!message.guild.member(user).kickable) return message.channel.send(equalMember);
     message.guild.member(user).kick(razon);
     message.channel.send(`A **${user.username}** ${respuestas[Math.floor(Math.random() * respuestas.length)]}, fue kickeado del servidor por ${razon}. :eyes:`);
   }
@@ -206,7 +230,7 @@ client.on("message", (message) => {
     .addField("Añadir más comandos de diversión:","Acciones (Abrazos, besos, golpes, pats etc)\rJuegos de azar y mujerz... Digo, y trivias\r~~Reproducir música~~\rBatallas pokemon\r~~Hablar con Diana~~\rSistema de niveles y roles (Muy, muy, muy en el futuro)\rShipeos\r~~Molestar a nakido~~\rPreguntas filosoficas\rRetos\rGalletas de la fortuna\r~~Lyrics~~\rFrases random\rOtros")
     .addField("Añadir comandos de busqueda","~~Youtube~~/Descargar audio de los videos\rImagenes\r~~Estadisticas de osu~~\rPokedex\rClima\rWikipedia :thinking:\rOtros")
     .addField("Añadir comandos generales","~~Userinfo\rBotinfo~~\r~~Avatar (Todos los bots lo tienen, yo solo quiero ser popular :c)~~\rCalculadora :thinking:\rRecordador\rOtros")
-    .addField("Mejorar comandos actuales","~~Ping (Que muestre el ping y no solo diga *Pong*)\rCaracola (Colocar las respuestas en un formato mas bonito)\rKick (Que diga cosas diferentes al kickear usuarios del servidor~~\rTalk (Hacer que Diana responda de inmediato)\rAvatar (colocarle un formato más bonito)")
+    .addField("Mejorar comandos actuales","~~Ping (Que muestre el ping y no solo diga *Pong*)\rCaracola (Colocar las respuestas en un formato mas bonito)\rKick (Que diga cosas diferentes al kickear usuarios del servidor~~\rTalk (Hacer que Diana responda de inmediato)\r~~Avatar (colocarle un formato más bonito~~)")
     .setTimestamp()
     message.channel.send({
       embed
@@ -216,14 +240,22 @@ client.on("message", (message) => {
 		let args = message.content.split(' ').slice(1);
 		let ur = args.slice(1).join(' ');
 		let md = args[0];
-		if (!md) return message.channel.send("Escribe un modo de juego: `&osu ctb CircusRockS`");
-		if (!ur) return message.channel.send("Escribe un nombre de usuario: `&osu ctb CircusRockS`");
+    let noMD = new Discord.RichEmbed()
+    .setDescription("**Escribe un modo de juego**\nEjemplo: `&osu ctb CircusRockS`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("ff0000")
+		if (!md) return message.channel.send(noMD);
+    let noUR = new Discord.RichEmbed()
+    .setDescription("**Escribe un nombre de usuario**\nEjemplo: `&osu ctb CircusRockS`")
+    .setFooter("Manual del Usuario de Diana")
+    .setColor("ff0000")
+		if (!ur) return message.channel.send(noUR);
 		if (md === "std" || md === "taiko" || md === "ctb" || md === "mania") {
 			if (md === "std") md = 0
 			if (md === "taiko") md = 1
 			if (md === "ctb") md = 2
 			if (md === "mania") md = 3
-			osu.give_key('167deeafb500d910ab446a46e53ffa1b44c935a9');
+			osu.give_key(process.env.OSU_API);
 			osu.get_user({
 					u: ur,
 					m: md
@@ -266,34 +298,12 @@ client.on("message", (message) => {
 		}
 	}
   if (command === "diana") {
-    if (message.author.id !== config.ownerID) return message.channel.send("Tú no me das ordenes.");
+    let noOwner = new Discord.RichEmbed()
+    .setDescription("**Tú no me das ordenes.**")
+    .setFooter("Sistema de seguridad de Diana")
+    .setColor("ff0000")
+	if (message.author.id !== config.ownerID) return message.channel.send(noOwner);
     message.channel.send("Yes *my darling*.");
-    const clean = text => {
-			if (typeof(text) === "string") return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-			else
-				return text;
-		}
-		try {
-			const code = args.join(" ");
-			let evaled = eval(code);
-			if (typeof evaled !== "string")
-				evaled = require("util").inspect(evaled);
-      console.log(clean(evaled))
-			const embed = new Discord.RichEmbed()
-				.setColor(0x00ff00)
-				.setFooter("Diana Eval")
-				.addField("INPUT", `\`\`\`js\n${code}\n\`\`\``)
-				.addField("OUTPUT", `\`\`\`js\n${clean(evaled)}\n\`\`\``);
-			message.channel.send({
-				embed
-			});
-		} catch (err) {
-			message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-		}
-  }
-  if (command === "nakido") {
-    if (message.author.id !== config.nakido) return message.channel.send("No eres nakido.");
-    message.channel.send("Bueno.");
     const clean = text => {
 			if (typeof(text) === "string") return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
 			else
@@ -320,7 +330,11 @@ client.on("message", (message) => {
   if (command === "yt") {
     const content = message.content.split(' ').slice(1);
     const args = content.join(' ');
-    if (!args) return message.channel.send("Escribe un titulo para buscarlo `&yt Circus Monster Mayu`");
+    let noArgs = new Discord.RichEmbed()
+    .setDescription("**Escribe un titulo para buscarlo**\nEjemplo: `&yt Mayu - Circus Monster`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("ff0000")
+    if (!args) return message.channel.send(noArgs);
     youtube.searchVideos(args, 1)
       .then(results => {
 	    message.channel.send("*"+message.author.username+"-sama* busqué en youtube `"+args+"` y encontré esto:\n"+results[0].url);
@@ -349,14 +363,26 @@ client.on("message", (message) => {
 		});
   }
   if (command === "bautizar") {
-      if (message.mentions.users.size < 1) return message.channel.send("Menciona a un usuario: `&bautizar @diana#1961`");
-    message.channel.send("*Toma un sobre de tang y lo rocia sobre "+message.mentions.users.first()+"* **Has sido bendecido.**")
+    let noMention = new Discord.RichEmbed()
+    .setDescription("**Debes mencionar a alguien**\nEjemplo: `&bautizar @diana#1961`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("ff0000")
+      if (message.mentions.users.size < 1) return message.channel.send(noMention);
+    message.channel.send("*Toma un sobre de tang y lo rocia sobre "+message.mentions.users.first()+"* **Has sido bio.**")
   }
   if (command === "setavatar") {
 		const content = message.content.split(' ').slice(1);
 		const avatar = content.join(' ');
-		if (!avatar) return message.channel.send("Envia un enlace de imagen para ponerme.");
-			if (message.author.id !== config.ownerID) return message.channel.send("Tú no me das ordenes.");
+    let noOwner = new Discord.RichEmbed()
+    .setDescription("**Tú no me das ordenes.**")
+    .setFooter("Sistema de seguridad de Diana")
+    .setColor("ff0000")
+	if (message.author.id !== config.ownerID) return message.channel.send(noOwner);
+    let noAvatar = new Discord.RichEmbed()
+    .setDescription("**Envia el enlace de la imagen que quieres ponerme.**")
+    .setColor("ff0000")
+    .setFooter("Manual del usuario de Diana")
+		if (!avatar) return message.channel.send(noAvatar);
 				message.channel.send("Yes *my darling*.");
 				client.user.setAvatar(avatar)
   }
@@ -380,7 +406,11 @@ client.on("message", (message) => {
 	if (command === "c"){
     const content = message.content.split(' ').slice(1);
     const args = content.join(' ');
-		if(!args) return message.channel.send('Debes añadir una confesión para enviarla.');
+    let noArgs = new Discord.RichEmbed()
+    .setDescription("**Debes añadir una confesión para enviarla.**\nEjemplo: `&c Me gusta comer patatas fritas`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("FF0000")
+		if(!args) return message.channel.send();
     message.delete();
 		const embed = new Discord.RichEmbed()
 		.setColor(0x00ff00)
@@ -394,37 +424,81 @@ client.on("message", (message) => {
   if (command === "avatar"){
     let usera = message.mentions.users.first()
     if(!usera){
-      message.channel.send(message.author.avatarURL);
+      let userAvatar = new Discord.RichEmbed()
+      .setTitle("Avatar de "+message.author.username+":")
+      .setImage(message.author.avatarURL)
+      .setColor("00FF00")
+      message.channel.send(userAvatar);
     }else{
-      message.channel.send(usera.avatarURL);
+      let userAv = new Discord.RichEmbed()
+      .setTitle("Avatar de "+usera.username+":")
+      .setImage(usera.avatarURL)
+      .setColor("00FF00")
+      message.channel.send(userAv);
     }
   }
   if (command === "play") {
-    if (queue[message.guild.id] === undefined) return message.channel.send("Agrega canciones a la lista primero con `&add`");
-    if (!message.guild.voiceConnection) return command.join(message).then(() => command.play(message));
-    if (queue[message.guild.id].playing) return message.channel.sendMessage("Ya está reproduciendo una canción");
+    let noSongs = new Discord.RichEmbed()
+    .setDescription("**Agrega canciones a la lista de reproducción.**\nEjemplo: `&add Mili - world.execute(me);`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("FF0000")
+    if (queue[message.guild.id] === undefined) return message.channel.send(noSongs);
+    let noVoiceConection = new Discord.RichEmbed()
+    .setDescription("**No estoy en ningún canal de voz.**\nPuedes pedirme que me una a uno usando: `&join`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("FF0000")
+    if (!message.guild.voiceConnection) return message.channel.send(noVoiceConection);
+    let alreadyPlaying = new Discord.RichEmbed()
+    .setDescription("**Ya se encuentran en reproducción las canciones solicitadas.**")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("FF0000")
+    if (queue[message.guild.id].playing) return message.channel.send(alreadyPlaying);
     let dispatcher;
     queue[message.guild.id].playing = true;
     
     console.log(queue);
     (function play(song) {
       console.log(song);
-      if (song === undefined) return message.channel.sendMessage("La lista de repruducción está vacia.").then(() => {
+      let endSong = new Discord.RichEmbed()
+      .setDescription("**La lista de reproducción está vacia.**")
+      .setFooter("Sistema músical de Diana")
+      .setColor("0000FF")
+      if (song === undefined) return message.channel.send(endSong).then(() => {
         queue[message.guild.id].playing = false;
         message.member.voiceChannel.leave();
       });
-      message.channel.sendMessage(`Reproduciendo: **${song.title}** Pedida por **${song.requester}**`);
+      let songSound = new Discord.RichEmbed()
+      .setDescription(`Reproduciendo: **${song.title}**\nSolicitada por: **${song.requester}**`)
+      .setFooter("Sistema músical de Diana")
+      .setColor("0000FF")
+      message.channel.send(songSound);
       dispatcher = message.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes : config.passes });
       let collector = message.channel.createCollector(m => m);
       collector.on('message', m => {
         if (m.content.startsWith(config.prefix + 'pause')){
-          message.channel.sendMessage('Pausando...').then(() => {dispatcher.pause();});
+          let pauseCMD = new Discord.RichEmbed()
+          .setDescription("Se ha pausado la reproducción.")
+          .setFooter("Sistema músical de Diana")
+          .setColor("0000FF")
+          message.channel.send(pauseCMD).then(() => {dispatcher.pause();});
         } else if (m.content.startsWith(config.prefix + 'resume')){
-          message.channel.sendMessage('Reproduciendo...').then(() => {dispatcher.resume();});
+          let resumeCMD = new Discord.RichEmbed()
+          .setDescription("He continuado con la reproducción.")
+          .setFooter("Sistema músical de Diana")
+          .setColor("0000FF")
+          message.channel.send(resumeCMD).then(() => {dispatcher.resume();});
         } else if (m.content.startsWith(config.prefix + 'skip')){
-          message.channel.sendMessage('Saltado...').then(() => {dispatcher.end();});
+          let skipCMD = new Discord.RichEmbed()
+          .setDescription("He salteado la canción que sonaba.")
+          .setFooter("Sistema músical de Diana")
+          .setColor("0000FF")
+          message.channel.send(skipCMD).then(() => {dispatcher.end();});
         } else if (m.content.startsWith(config.prefix + 'time')){
-          message.channel.sendMessage(`Tiempo: ${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0'+Math.floor((dispatcher.time % 60000)/1000) : Math.floor((dispatcher.time % 60000)/1000)}`);
+          let timeCMD = new Discord.RichEmbed()
+          .setDescription(`La canción lleva sonando: ${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0'+Math.floor((dispatcher.time % 60000)/1000) : Math.floor((dispatcher.time % 60000)/1000)}`)
+          .setFooter("Sistema músical de Diana")
+          .setColor("0000FF")
+          message.channel.send(timeCMD);
         }
       });
       dispatcher.on('end', () => {
@@ -432,7 +506,7 @@ client.on("message", (message) => {
         play(queue[message.guild.id].songs.shift());
       });
       dispatcher.on('error', (err) => {
-        return message.channel.sendMessage('error: ' + err).then(() => {
+        return message.channel.send('error: ' + err).then(() => {
           collector.stop();
           play(queue[message.guild.id].songs.shift());
         });
@@ -442,32 +516,78 @@ client.on("message", (message) => {
   if (command === "join") {
     return new Promise((resolve, reject) => {
       const voiceChannel = message.member.voiceChannel;
-      if (!voiceChannel || voiceChannel.type !== 'voice') return message.reply('No me puedo unir a tu canal de voz...');
+      let noVoice = new Discord.RichEmbed()
+      .setDescription("**No estás en un canal de voz, por favor ingresa a uno.**")
+      .setFooter("Manual del usuario de Diana")
+      .setColor("FF0000")
+      if (!voiceChannel || voiceChannel.type !== 'voice') return message.channel.send(noVoice);
       voiceChannel.join().then(connection => resolve(connection)).catch(err => reject(err));
     });
   }
   if (command === "add") {
     const content = message.content.split(' ').slice(1);
     const args = content.join(' ');
-    if (!args) return message.channel.send("Escribe un titulo para buscarlo `&yt Circus Monster Mayu`");
+    let noArgs = new Discord.RichEmbed()
+    .setDescription("**Escribe el titulo de una canción para añadirla a la lista de reproducción.**\nEjemplo: `&add Mili - World.execute(me);`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("FF0000")
+    if (!args) return message.channel.send(noArgs);
+    let noVoiceConection = new Discord.RichEmbed()
+    .setDescription("**No estoy en ningún canal de voz**\nPuedes pedirme que me una a uno usando: `&join`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("FF0000")
+    if (!message.guild.voiceConnection) return message.channel.send(noVoiceConection);
     youtube.searchVideos(args, 1)
       .then(results => {
       let url = results[0].url
       yt.getInfo(url, (err, info) => {
-        if(err) return message.channel.sendMessage('El enlace de youtube es invalido: ' + err);
+        if(err) return message.channel.send('El enlace de youtube es invalido: ' + err);
         if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
         queue[message.guild.id].songs.push({url: url, title: info.title, requester: message.author.username});
-        message.channel.sendMessage(`**${info.title}** ha sido añadido a la lista de repruducción`);
+        let addedEmbed = new Discord.RichEmbed()
+        .setDescription(`**${info.title}**\nHa sido añadido a la lista de reproducción`)
+        .setFooter("Sistema músical de Diana")
+        .setColor("0000FF")
+        message.channel.send(addedEmbed);
       });
     });
   }
     if (command === "queue") {
-      if (queue[message.guild.id] === undefined) return message.channel.sendMessage(`Añade canciones a la lista de reproducción primero.`);
+      let emptyEmbed = new Discord.RichEmbed()
+      .setDescription("**La lista de reproducción está vacía.**\nAñade canciones con: `&add <titulo de la canción>`")
+      .setFooter("Manual del usuario de Diana.")
+      .setColor("FF0000")
+      if (queue[message.guild.id] === undefined) return message.channel.sendMessage(emptyEmbed);
       let tosend = [];
       queue[message.guild.id].songs.forEach((song, i) => { tosend.push(`${i+1}. ${song.title} - Solicitado por: ${song.requester}`);});
       message.channel.sendMessage(`__**Lista de reproducción de ${message.guild.name}**__ **${tosend.length}** Canciones en espera ${(tosend.length > 15 ? '*[Solo se muestran las siguientes 15]*' : '')}\n\`\`\`${tosend.slice(0,15).join('\n')}\`\`\``);
     }
   if (command === "leave"){
     message.member.voiceChannel.leave()
+  }
+  if (command === "clear") {
+    const content = message.content.split(' ').slice(1);
+    const args = content.join(' ');
+	  let nanEmbed = new Discord.RichEmbed()
+	  .setDescription("**Por favor especifica un número de mensajes para eliminar.**\nEjemplo: `&clear <cantidad>`")
+	  .setFooter("Manual del usuario de Diana.")
+	  .setColor("FF0000")
+    if (isNaN(args[0])) return message.channel.send(nanEmbed)
+	  let adminEmbed = new Discord.RichEmbed()
+         .setDescription("**Este comando requiere de permisos de Administrador**")
+         .setFooter("Sistema de seguridad de Diana.")
+         .setColor("FF0000")
+    if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send(adminEmbed)
+    async function delet() {
+      message.delete()
+      const fetched = await message.channel.fetchMessages({
+        limit: args
+      });
+      console.log("Se han encontrado "+fetched.size+" mensajes... Borrando");
+      message.channel.bulkDelete(fetched)
+        .catch(error => message.channel.send(`Error: ${error}`));
+      message.channel.send("Se han eliminado "+fetched.size+" mensajes")
+    }
+    delet();
   }
 });
