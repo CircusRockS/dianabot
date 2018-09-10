@@ -92,7 +92,7 @@ client.on("message", (message) => {
 		.addField("Busqueda",
 		"&yt [texto] = Busca videos en youtube\r&osu [modo] [Nombre de usuario] = Te enseña las estadisticas de dicho usuario | `Creditos: "+`${nakido.username}#${nakido.discriminator}`+"`")
 		.addField("Música", 
-		"&play = Reproduce la lista de canciones añadidas\r&add [Texto] = Añade una canción a la lista de reproducción\r&queue = Enseña la lista de canciones en espera\r&join = Me uno al canal de voz donde estas\r&leave = Salgo del canal de voz donde estas\r&pause = Pauso la canción que está sonando\r&resume = Continuo la reproducción de la canción que suena\r&time = Enseño el minuto en el que la canción está")
+		"&play = Reproduce la lista de canciones añadidas\r&add [Texto] = Añade una canción a la lista de reproducción\r&queue = Enseña la lista de canciones en espera\r&join = Me uno al canal de voz donde estas\r&leave = Salgo del canal de voz donde este\r&pause = Pauso la canción que está sonando\r&resume = Continuo la reproducción de la canción que suena\r&time = Enseño el tiempo que lleva sonando la canción\r&skip = Salto la canción que esté sonando")
 		.addBlankField(true)
 		message.channel.send({
       embed
@@ -226,11 +226,11 @@ client.on("message", (message) => {
     .setAuthor(message.author.username, message.author.avatarURL)
     .setColor(0x00ff00)
     .setFooter("Para más información visita: https://dianabot.glitch.me/ (WIP)", client.user.avatarURL)
-    .addField("Añadir comandos de moderación:","~~Kick~~\rBan\rMute\rLogs\rOtros")
-    .addField("Añadir más comandos de diversión:","Acciones (Abrazos, besos, golpes, pats etc)\rJuegos de azar y mujerz... Digo, y trivias\r~~Reproducir música~~\rBatallas pokemon\r~~Hablar con Diana~~\rSistema de niveles y roles (Muy, muy, muy en el futuro)\rShipeos\r~~Molestar a nakido~~\rPreguntas filosoficas\rRetos\rGalletas de la fortuna\r~~Lyrics~~\rFrases random\rOtros")
-    .addField("Añadir comandos de busqueda","~~Youtube~~/Descargar audio de los videos\rImagenes\r~~Estadisticas de osu~~\rPokedex\rClima\rWikipedia :thinking:\rOtros")
-    .addField("Añadir comandos generales","~~Userinfo\rBotinfo~~\r~~Avatar (Todos los bots lo tienen, yo solo quiero ser popular :c)~~\rCalculadora :thinking:\rRecordador\rOtros")
-    .addField("Mejorar comandos actuales","~~Ping (Que muestre el ping y no solo diga *Pong*)\rCaracola (Colocar las respuestas en un formato mas bonito)\rKick (Que diga cosas diferentes al kickear usuarios del servidor~~\rTalk (Hacer que Diana responda de inmediato)\r~~Avatar (colocarle un formato más bonito~~)")
+    .addField("Añadir comandos de moderación:","Ban\rMute\rLogs\rOtros")
+    .addField("Añadir más comandos de diversión:","Acciones (Abrazos, besos, golpes, pats etc)\rJuegos de azar y mujerz... Digo, y trivias\rBatallas pokemon\rSistema de niveles y roles (Muy, muy, muy en el futuro)\rShipeos\r~~Molestar a nakido~~\rPreguntas filosoficas\rRetos\rGalletas de la fortuna\rFrases random\rOtros")
+    .addField("Añadir comandos de busqueda","Imagenes\rPokedex\rClima\rWikipedia :thinking:\rOtros")
+    .addField("Añadir comandos generales","Calculadora :thinking:\rRecordador\rOtros")
+    .addField("Mejorar comandos actuales","\rTalk (Hacer que Diana responda de inmediato)")
     .setTimestamp()
     message.channel.send({
       embed
@@ -341,8 +341,12 @@ client.on("message", (message) => {
      });
   }
   if (command === "spray") {
-    if (message.mentions.users.size < 1) return message.channel.send("Menciona a un usuario: `&spray @diana#1961`");
-    message.channel.send("*Toma un spray con agua y moja a "+message.mentions.users.first()+"* ¡Gato Malo!")
+	  let noMention = new Discord.RichEmbed()
+	  .setDescription("**Menciona a un usuario**\nEjemplo: `&spray @diana#1961`")
+	  .setFooter("Manual del usuario de Diana")
+	  .setColor("ff0000")
+    if (message.mentions.users.size < 1) return message.channel.send(noMention);
+    message.channel.send("*Toma un spray con agua y moja a "+message.mentions.users.first()+"* ¡Malo, malo, malo!")
   }
   if (command === "botinfo") {
     let circus = client.users.get(config.ownerID)
@@ -368,7 +372,7 @@ client.on("message", (message) => {
     .setFooter("Manual del usuario de Diana")
     .setColor("ff0000")
       if (message.mentions.users.size < 1) return message.channel.send(noMention);
-    message.channel.send("*Toma un sobre de tang y lo rocia sobre "+message.mentions.users.first()+"* **Has sido bio.**")
+    message.channel.send("*Toma un sobre de tang y lo rocia sobre "+message.mentions.users.first()+"* ***Has sido bendecido.***")
   }
   if (command === "setavatar") {
 		const content = message.content.split(' ').slice(1);
