@@ -7,7 +7,7 @@ Diana bot es un bot de discord hecho en javascript aún en desarrollo hecho por
 De momento tiene comandos muy básicos, pero en el futuro planeo añadir comandos
 más complejos y mejorar los básicos.
 
-Puedes encontrar más información [Aquí](https://dianabot.glitch.me). **(WIP)**
+Puedes encontrar más información [Aquí](https://dianabot.glitch.me). **(WIP)** (Desactualizado, usa &help para ver la lista de comandos)
 
 
 Lista de cosas por hacer
@@ -59,7 +59,9 @@ Lista de cosas por hacer
 **Añadir comandos generales**
   
   -Calculadora
+  
   -Recordador
+  
   -Otros
   
 **Mejorar comandos actuales**
