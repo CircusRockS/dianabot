@@ -411,7 +411,7 @@ client.on("message", (message) => {
     const content = message.content.split(' ').slice(1);
     const args = content.join(' ');
     let noArgs = new Discord.RichEmbed()
-    .setDescription("**Debes añadir una confesión para enviarla.**\nEjemplo: `&c Me gusta comer patatas fritas`")
+    .setDescription("**Debes añadir texto para enviarlo.**\nEjemplo: `&c Puto el que lo lea.`")
     .setFooter("Manual del usuario de Diana")
     .setColor("FF0000")
 		if(!args) return message.channel.send();
@@ -593,5 +593,21 @@ client.on("message", (message) => {
       message.channel.send("Se han eliminado "+fetched.size+" mensajes")
     }
     delet();
+  }
+  if (command === "confesar"){
+    const content = message.content.split(' ').slice(1);
+    const args = content.join(' ');
+    let noArgs = new Discord.RichEmbed()
+    .setDescription("**Debes añadir una confesión para enviarla.**\nEjemplo: `&c Me gusta comer patatas fritas`")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("FF0000")
+		if(!args) return message.channel.send();
+    message.delete();
+		const embed = new Discord.RichEmbed()
+		.setColor(0x00ff00)
+		.setTitle("Anónimo:")
+		.setDescription(`${args}`)
+		.setTimestamp()
+    client.channels.get("470786494270013442").send(embed)
   }
 });
