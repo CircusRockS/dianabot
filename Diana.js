@@ -608,6 +608,7 @@ client.on("message", (message) => {
 		.setTitle("Anónimo:")
 		.setDescription(`${args}`)
 		.setTimestamp()
+		.setFooter("Sistema de confesiones de Diana.")
     client.channels.get("470786494270013442").send(embed)
   }
 });
