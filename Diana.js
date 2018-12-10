@@ -604,7 +604,7 @@ client.on("message", (message) => {
 		if(!args) return message.channel.send();
     message.delete();
 		const embed = new Discord.RichEmbed()
-		.setColor(0x00ff00)
+		.setColor(0xff00ff)
 		.setTitle("Anónimo:")
 		.setDescription(`${args}`)
 		.setTimestamp()
