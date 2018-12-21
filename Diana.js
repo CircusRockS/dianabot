@@ -88,7 +88,7 @@ client.on("message", (message) => {
 		.addField("Moderación",
 		"&kick @mencion [razon] = ¡Saca un usuario molesto de tu servidor!\r&clear [cantidad] = Elimino la cantidad de mensajes indicados")
 		.addField("Diversión",
-		"&visto @mencion = ¡Dejas en visto a un usuario! :o\r&ping = ¡Pong!\r&decir [texto] = ¡Digo lo que quieras!\r&caracola = Preguntale algo a la caracola mágica :o (Solo preguntas que se puedan responder con si o no)\r&spray @mencion = ¡Mojas a alguien cuando sea malo!\r&bautizar @mencion = Le ofreces la bendición eterna a un usuario~\r&lyrics = Enseña un fragmento de una canción al azar.\r&talk = Habla conmigo (Tardo en responder, tengo mejores cosas que hacer)\r&c = Envia un mensaje completamente anónimo.")
+		"&visto @mencion = ¡Dejas en visto a un usuario! :o\r&ping = ¡Pong!\r&decir [texto] = ¡Digo lo que quieras!\r&caracola = Preguntale algo a la caracola mágica :o (Solo preguntas que se puedan responder con si o no)\r&spray @mencion = ¡Mojas a alguien cuando sea malo!\r&bautizar @mencion = Le ofreces la bendición eterna a un usuario~\r&lyrics = Enseña un fragmento de una canción al azar.\r&talk = Habla conmigo (Tardo en responder, tengo mejores cosas que hacer)\r&c = Envia un mensaje completamente anónimo.\r&e [Emote] = Amplia un emote para que lo veas mejor.")
 		.addField("Busqueda",
 		"&yt [texto] = Busca videos en youtube\r&osu [modo] [nombre de usuario] = Te enseña las estadisticas de dicho usuario | `Creditos: "+`${nakido.username}#${nakido.discriminator}`+"`")
 		.addField("Música", 
