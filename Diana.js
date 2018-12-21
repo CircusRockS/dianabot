@@ -601,7 +601,7 @@ client.on("message", (message) => {
     .setDescription("**Debes añadir una confesión para enviarla.**\nEjemplo: `&c Me gusta comer patatas fritas`")
     .setFooter("Manual del usuario de Diana")
     .setColor("FF0000")
-		if(!args) return message.channel.send();
+		if(!args) return message.channel.send(noArgs);
     message.delete();
 		const embed = new Discord.RichEmbed()
 		.setColor(0xad00ff)
@@ -610,5 +610,25 @@ client.on("message", (message) => {
 		.setTimestamp()
 		.setFooter("Sistema de confesiones de Diana.")
     client.channels.get("470786494270013442").send(embed)
+  }
+  if (command === "e"){
+    let noArgs = new Discord.RichEmbed()
+    .setDescription("**Debes añadir un emote para enviarlo.**\nEjemplo: `&e `<a:lechu_padorug:519160133746688010>")
+    .setFooter("Manual del usuario de Diana")
+    .setColor("FF0000")
+    if (!args.join(" ")) return message.channel.send(noArgs);
+    let emoji = args[0].replace(/[<>]/g,"").split(":");
+    let gif = emoji[0] === "a";
+    let id = emoji[2];
+    let type = gif ? ".gif":".png";
+    var user = message.author;
+    message.delete()
+    const embed = new Discord.RichEmbed()
+    .setColor(0x00ff00)
+    .setImage("https://cdn.discordapp.com/emojis/" + id + type)
+    .setAuthor(user.username, user.avatarURL)
+    message.channel.send({
+      embed
+    })
   }
 });
