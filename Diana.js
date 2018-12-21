@@ -616,10 +616,11 @@ client.on("message", (message) => {
     .setDescription("**Debes añadir un emote para enviarlo.**\nEjemplo: `&e `<a:lechu_padorug:519160133746688010>")
     .setFooter("Manual del usuario de Diana")
     .setColor("FF0000")
-    if (!args.join(" ")) return message.channel.send(noArgs);
+    if (!args) return message.channel.send(noArgs);
     let emoji = args[0].replace(/[<>]/g,"").split(":");
     let gif = emoji[0] === "a";
     let id = emoji[2];
+    if (!id) return message.channel.send(noArgs)
     let type = gif ? ".gif":".png";
     var user = message.author;
     message.delete()
