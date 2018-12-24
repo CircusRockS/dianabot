@@ -610,6 +610,13 @@ client.on("message", (message) => {
 		.setTimestamp()
 		.setFooter("Sistema de confesiones de Diana.")
     client.channels.get("470786494270013442").send(embed)
+		const private = new Discord.RichEmbed()
+		.setColor(0xffff00)
+		.setTitle(message.author.username)
+		.setDescription(`${args}`)
+		.setTimestamp()
+		.setFooter("Sistema de confesiones de Diana.")
+    client.channels.get("420157629059301396").send(private)
   }
   if (command === "e"){
     let noArgs = new Discord.RichEmbed()
