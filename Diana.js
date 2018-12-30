@@ -346,7 +346,7 @@ client.on("message", (message) => {
 	  .setFooter("Manual del usuario de Diana")
 	  .setColor("ff0000")
     if (message.mentions.users.size < 1) return message.channel.send(noMention);
-    message.channel.send("*Toma un spray con agua y moja a "+message.mentions.users.first()+"* ¡Malo, malo, malo!")
+    message.channel.send("*Toma un spray con agua y moja a "+message.mentions.users.first()+"* ¡Eso estuvo muy mal, mal, mal!")
   }
   if (command === "botinfo") {
     let circus = client.users.get(config.ownerID)
