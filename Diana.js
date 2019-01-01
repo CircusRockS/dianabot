@@ -616,7 +616,7 @@ client.on("message", (message) => {
 		.setDescription(`${args}`)
 		.setTimestamp()
 		.setFooter("Sistema de confesiones de Diana.")
-    client.channels.get("420157629059301396").send(private)
+    client.channels.get("529698818585788440").send(private)
   }
   if (command === "e"){
     let noArgs = new Discord.RichEmbed()
