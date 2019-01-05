@@ -602,7 +602,6 @@ client.on("message", (message) => {
     .setFooter("Manual del usuario de Diana")
     .setColor("FF0000")
 		if(!args) return message.channel.send(noArgs);
-    message.delete();
 		const embed = new Discord.RichEmbed()
 		.setColor(0xad00ff)
 		.setTitle("Anónimo:")
