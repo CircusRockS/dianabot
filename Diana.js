@@ -335,10 +335,11 @@ client.on("message", (message) => {
     .setFooter("Manual del usuario de Diana")
     .setColor("ff0000")
     if (!args) return message.channel.send(noArgs);
-    youtube.searchVideos(args, 1)
+    youtube.search(args, 1)
       .then(results => {
 	    message.channel.send("*"+message.author.username+"-sama* busqué en youtube `"+args+"` y encontré esto:\n"+results[0].url);
-     });
+     })
+    .catch(console.error);
   }
   if (command === "spray") {
 	  let noMention = new Discord.RichEmbed()
@@ -541,7 +542,7 @@ client.on("message", (message) => {
     .setFooter("Manual del usuario de Diana")
     .setColor("FF0000")
     if (!message.guild.voiceConnection) return message.channel.send(noVoiceConection);
-    youtube.searchVideos(args, 1)
+    youtube.search(args, 1)
       .then(results => {
       let url = results[0].url
       yt.getInfo(url, (err, info) => {
@@ -554,7 +555,8 @@ client.on("message", (message) => {
         .setColor("0000FF")
         message.channel.send(addedEmbed);
       });
-    });
+    })
+    .catch(console.error);
   }
     if (command === "queue") {
       let emptyEmbed = new Discord.RichEmbed()
