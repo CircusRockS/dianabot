@@ -542,7 +542,7 @@ client.on("message", (message) => {
     .setFooter("Manual del usuario de Diana")
     .setColor("FF0000")
     if (!message.guild.voiceConnection) return message.channel.send(noVoiceConection);
-    youtube.search(args, 1)
+    youtube.searchVideos(args, 1)
       .then(results => {
       let url = results[0].url
       yt.getInfo(url, (err, info) => {
