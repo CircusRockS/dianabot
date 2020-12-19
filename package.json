@@ -33,7 +33,7 @@
     "simple-youtube-api": "^5.2.1",
     "cleverbot.io": "^1.0.4",
     "opusscript": "^0.0.6",
-    "ytdl-core": "^3.4.0",
+    "ytdl-core": "^4.2.1",
     "request": "^2.88.0",
     "fs": "^0.0.2",
     "get-youtube-id": "^1.0.1",
