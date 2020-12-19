@@ -73,14 +73,13 @@ client.on("message", (message) => {
     });
 	}
 	if (command === "help") {
-    let nakido = client.users.get(config.nakido)
 		const embed = new Discord.RichEmbed()
 		.setTitle("Menú de ayuda")
     .setThumbnail(client.user.avatarURL)
 		.setAuthor(message.author.username, message.author.avatarURL)
 		.setColor(0x00ff00)
 		.setDescription("¿Necesitas ayuda con mis comandos?, ¡No te preocupes! Acá te dejo toda la información")
-		.setFooter("Para más información visita: https://dianabot.glitch.me/ (WIP)", client.user.avatarURL)
+		.setFooter("Para más información visita: https://dianabot.glitch.me/ (Desactualizado)", client.user.avatarURL)
 		.setThumbnail(client.user.avatarURL)
 		.setTimestamp()
 		.addField("General",
@@ -90,7 +89,7 @@ client.on("message", (message) => {
 		.addField("Diversión",
 		"&visto @mencion = ¡Dejas en visto a un usuario! :o\r&ping = ¡Pong!\r&decir [texto] = ¡Digo lo que quieras!\r&caracola = Preguntale algo a la caracola mágica :o (Solo preguntas que se puedan responder con si o no)\r&spray @mencion = ¡Mojas a alguien cuando sea malo!\r&bautizar @mencion = Le ofreces la bendición eterna a un usuario~\r&lyrics = Enseña un fragmento de una canción al azar.\r&talk = Habla conmigo (Tardo en responder, tengo mejores cosas que hacer)\r&c = Envia un mensaje completamente anónimo.\r&e [Emote] = Amplia un emote para que lo veas mejor.")
 		.addField("Busqueda",
-		"&yt [texto] = Busca videos en youtube\r&osu [modo] [nombre de usuario] = Te enseña las estadisticas de dicho usuario | `Creditos: "+`${nakido.username}#${nakido.discriminator}`+"`")
+		"&yt [texto] = Busca videos en youtube\r&osu [modo] [nombre de usuario] = Te enseña las estadisticas de dicho usuario | `Creditos: Nakido`")
 		.addField("Música", 
 		"&play = Reproduce la lista de canciones añadidas\r&add [texto] = Añade una canción a la lista de reproducción\r&queue = Enseña la lista de canciones en espera\r&join = Me uno a tu canal de voz\r&leave = Salgo del canal de voz\r&pause = Pauso la canción que está sonando\r&resume = Continuo la reproducción de la canción que suena\r&time = Enseño el tiempo que lleva sonando la canción\r&skip = Salto la canción que esté sonando")
 		.addBlankField(true)
