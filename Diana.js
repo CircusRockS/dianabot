@@ -87,7 +87,7 @@ client.on("message", (message) => {
 		.addField("Moderación",
 		"&kick @mencion [razon] = ¡Saca un usuario molesto de tu servidor!\r&clear [cantidad] = Elimino la cantidad de mensajes indicados")
 		.addField("Diversión",
-		"&visto @mencion = ¡Dejas en visto a un usuario! :o\r&ping = ¡Pong!\r&decir [texto] = ¡Digo lo que quieras!\r&caracola = Preguntale algo a la caracola mágica :o (Solo preguntas que se puedan responder con si o no)\r&spray @mencion = ¡Mojas a alguien cuando sea malo!\r&bautizar @mencion = Le ofreces la bendición eterna a un usuario~\r&lyrics = Enseña un fragmento de una canción al azar.\r&talk = Habla conmigo (Tardo en responder, tengo mejores cosas que hacer)\r&c = Envia un mensaje completamente anónimo.\r&e [Emote] = Amplia un emote para que lo veas mejor.")
+		"&visto @mencion = ¡Dejas en visto a un usuario! :o\r&ping = ¡Pong!\r&decir [texto] = ¡Digo lo que quieras!\r&caracola = Preguntale algo a la caracola mágica :o (Solo preguntas que se puedan responder con si o no)\r&spray @mencion = ¡Mojas a alguien cuando sea malo!\r&bautizar @mencion = Le ofreces la bendición eterna a un usuario~\r&lyrics = Enseña un fragmento de una canción al azar.\r&talk = Habla conmigo (Comando fuera de servicio)\r&c = Envia un mensaje completamente anónimo.\r&e [Emote] = Amplia un emote para que lo veas mejor.")
 		.addField("Busqueda",
 		"&yt [texto] = Busca videos en youtube\r&osu [modo] [nombre de usuario] = Te enseña las estadisticas de dicho usuario | `Creditos: Nakido`")
 		.addField("Música", 
@@ -229,7 +229,7 @@ client.on("message", (message) => {
     .addField("Añadir más comandos de diversión:","Acciones (Abrazos, besos, golpes, pats etc)\rJuegos de azar y mujerz... Digo, y trivias\rBatallas pokemon\rSistema de niveles y roles (Muy, muy, muy en el futuro)\rShipeos\r~~Molestar a nakido~~\rPreguntas filosoficas\rRetos\rGalletas de la fortuna\rFrases random\rOtros")
     .addField("Añadir comandos de busqueda","Imagenes\rPokedex\rClima\rWikipedia :thinking:\rOtros")
     .addField("Añadir comandos generales","Calculadora :thinking:\rRecordador\rOtros")
-    .addField("Mejorar comandos actuales","\rTalk (Hacer que Diana responda de inmediato)")
+    .addField("Mejorar comandos actuales","\rTalk (Volver a habilitar el comando)")
     .setTimestamp()
     message.channel.send({
       embed
@@ -400,12 +400,17 @@ client.on("message", (message) => {
     });
     }
 	if (command === "talk"){
-		bot.setNick("DianaCavendishBot")
+		let OOS = new Discord.RichEmbed()
+		.setDescription("**Actualmente este comando está fuera de servicio.**")
+		.setFooter("Sistema de notificaciones de Diana.")
+		.setColor("00FFFF")
+		message.channel.send(OOS);
+		/*bot.setNick("DianaCavendishBot")
 		bot.create(function(err, session) {
 			bot.ask(args.join(" "), function(err, response) {
 					message.channel.send(response)			
 			})
-		})
+		})*/
 	}
 	if (command === "c"){
     const content = message.content.split(' ').slice(1);
@@ -573,25 +578,29 @@ client.on("message", (message) => {
   if (command === "clear") {
     const content = message.content.split(' ').slice(1);
     const args = content.join(' ');
-	  let nanEmbed = new Discord.RichEmbed()
+	  let nanArg = new Discord.RichEmbed()
 	  .setDescription("**Por favor especifica un número de mensajes para eliminar.**\nEjemplo: `&clear <cantidad>`")
 	  .setFooter("Manual del usuario de Diana.")
 	  .setColor("FF0000")
-    if (isNaN(args[0])) return message.channel.send(nanEmbed)
-	  let adminEmbed = new Discord.RichEmbed()
+    if (isNaN(args[0])) return message.channel.send(nanArg)
+	  let ownerEmbed = new Discord.RichEmbed()
          .setDescription("**Este comando requiere de permisos de Administrador**")
          .setFooter("Sistema de seguridad de Diana.")
          .setColor("FF0000")
-    if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send(adminEmbed)
+    if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send(ownerEmbed)
     async function delet() {
       message.delete()
       const fetched = await message.channel.fetchMessages({
         limit: args
       });
-      console.log("Se han encontrado "+fetched.size+" mensajes... Borrando");
+      console.log("Se ha encontrado "+fetched.size+" mensajes... Borrando");
       message.channel.bulkDelete(fetched)
-        .catch(error => message.channel.send(`Error: ${error}`));
-      message.channel.send("Se han eliminado "+fetched.size+" mensajes")
+        .catch(error => console.log(`Error: ${error}`));
+      let success = new Discord.RichEmbed()
+         .setDescription("**Se ha eliminado "+fetched.size+" mensajes**")
+         .setFooter("Sistema de notificaciones de Diana.")
+         .setColor("00FFFF")
+      message.channel.send(success)
     }
     delet();
   }
