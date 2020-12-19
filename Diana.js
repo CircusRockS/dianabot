@@ -334,7 +334,7 @@ client.on("message", (message) => {
     .setFooter("Manual del usuario de Diana")
     .setColor("ff0000")
     if (!args) return message.channel.send(noArgs);
-    youtube.search(args, 1)
+    youtube.searchVideos(args, 1)
       .then(results => {
 	    message.channel.send("*"+message.author.username+"-sama* busqué en youtube `"+args+"` y encontré esto:\n"+results[0].url);
      })
@@ -548,17 +548,13 @@ client.on("message", (message) => {
     if (!message.guild.voiceConnection) return message.channel.send(noVoiceConection);
     youtube.searchVideos(args, 1)
       .then(results => {
-      let url = results[0].url
-      yt.getInfo(url, (err, info) => {
-        if(err) return message.channel.send('El enlace de youtube es invalido: ' + err);
         if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
-        queue[message.guild.id].songs.push({url: url, title: info.title, requester: message.author.username});
+        queue[message.guild.id].songs.push({url: results[0].url, title: results[0].title, requester: message.author.username});
         let addedEmbed = new Discord.RichEmbed()
-        .setDescription(`**${info.title}**\nHa sido añadido a la lista de reproducción`)
+        .setDescription(`**${results[0].title}**\nHa sido añadido a la lista de reproducción`)
         .setFooter("Sistema músical de Diana")
         .setColor("0000FF")
         message.channel.send(addedEmbed);
-      });
     })
     .catch(console.error);
   }
