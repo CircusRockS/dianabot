@@ -21,7 +21,7 @@
   },
   "homepage": "",
   "dependencies": {
-    "discord.js": "^11.3.2",
+    "discord.js": "^11.6.4",
     "enmap": "^2.5.0",
     "moment": "^2.22.1",
     "moment-duration-format": "^2.2.2",
